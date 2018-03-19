@@ -3,20 +3,20 @@
 (function () {
 
     angular.module('chartApp').config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/dashboard");
+        $urlRouterProvider.otherwise("/sonrai");
 
         $stateProvider.state("dashboard", {
             url: "/dashboard",
-            templateUrl: "/project/webapp/app/feature/dashboard/dashboard.html"
+            templateUrl: "/SonraiGuru-Angular/webapp/app/feature/dashboard/dashboard.html"
         }).state("account", {
                 url: "/account",
-                templateUrl: "/project/webapp/app/feature/account/account.html"
+                templateUrl: "/SonraiGuru-Angular/webapp/app/feature/account/account.html"
         }).state("login", {
                 url: "/login",
-                templateUrl: "/project/webapp/app/feature/login/login.html"
+                templateUrl: "/SonraiGuru-Angular/webapp/app/feature/login/login.html"
         }).state("saveaccount", {
                 url: "/save-account",
-                templateUrl: "/project/webapp/app/feature/account/createAccount.html"
+                templateUrl: "/SonraiGuru-Angular/webapp/app/feature/account/createAccount.html"
         }).state("updateAccount", {
                 url: "/update-account",
                 params: {
@@ -25,7 +25,10 @@
                 	secondName: null,
                 	accountNumber: null
                 },
-                templateUrl: "/project/webapp/app/feature/account/updateAccount.html"
+                templateUrl: "/SonraiGuru-Angular/webapp/app/feature/account/updateAccount.html"
+        }).state("sonrai", {
+            url: "/sonrai",
+            templateUrl: "/SonraiGuru-Angular/webapp/app/feature/sonrai/sonrai.html"
         })
     });
 }());
