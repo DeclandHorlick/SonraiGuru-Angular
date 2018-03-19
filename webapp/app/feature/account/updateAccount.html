@@ -1,0 +1,33 @@
+<div class="container" ng-controller="updateAccountController as updateAccountCtrl">
+  <form class="form-horizontal" name="updateForm" ng-submit="updateAccountCtrl.updateOnSubmit()" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : updateForm.firstname.$invalid && !updateForm.firstname.$pristine }">
+      <label class="control-label col-sm-2" for="firstname">{{'First-name:'}}</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="firstname" ng-model = "updateAccountCtrl.first_name" name="firstname" ng-minlength="2" ng-maxlength="80" ng-required = "true">
+        <p ng-show="updateForm.firstname.$error.minlength" class="help-block">First name is too short.</p>
+        <p ng-show="updateForm.firstname.$error.maxlength" class="help-block">First name is too long.</p>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : updateForm.surname.$invalid && !updateForm.surname.$pristine }">
+      <label class="control-label col-sm-2" for="surname">{{'Surname:'}}</label>
+      <div class="col-sm-10">          
+        <input class="form-control" id="surname" ng-model = "updateAccountCtrl.second_name" name="surname" ng-minlength="2" ng-maxlength="80" ng-required = "true">
+        <p ng-show="updateForm.surname.$error.minlength" class="help-block">Surname is too short.</p>
+        <p ng-show="updateForm.surname.$error.maxlength" class="help-block">Surname is too long.</p>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : updateForm.accountnumber.$invalid && !updateForm.accountnumber.$pristine }">
+      <label class="control-label col-sm-2" for="accountnumber">{{'Account number:'}}</label>
+      <div class="col-sm-10">          
+        <input class="form-control" id="accountnumber" ng-model = "updateAccountCtrl.acc_no" name="accountnumber" ng-minlength="4" ng-maxlength="4" ng-required = "true">
+        <p ng-show="updateForm.accountnumber.$error.minlength" class="help-block">Account number is too short.</p>
+        <p ng-show="updateForm.accountnumber.$error.maxlength" class="help-block">Account number is too long.</p>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-11 col-sm-1">
+          <button ng-disabled = "updateForm.$invalid" type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

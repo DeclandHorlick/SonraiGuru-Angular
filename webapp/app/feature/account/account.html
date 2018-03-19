@@ -1,0 +1,26 @@
+<div class="panel panel-default" ng-controller="accountController as accountCtrl">
+	    <div class="panel-heading">Accounts page</div>
+	    <div class="panel-body">
+   		{{accountCtrl.test}}
+   		<div ng-hide="accountCtrl.isHidden">
+        	<h3><span>Accounts table</span></h3>
+        	<table class="table">
+        		<tr>
+        			<th>{{'first_name' | uppercase}}</th>
+        			<th>{{'surname' | uppercase}}</th>
+        			<th>{{'account_number' | uppercase}}</th>
+        			<th>{{'Edit'}}</th>
+        			<th>{{'Delete'}}</th>
+        		</tr>
+        		<tr ng-repeat="account in accountCtrl.accounts">
+        			<td>{{account.firstName}}</td>
+        			<td>{{account.secondName}}</td>
+        			<td>{{account.accountNumber}}</td>
+        			<td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" ng-click = "accountCtrl.updateAcc(account.id, account.firstName, account.secondName, account.accountNumber)" data-title="Edit" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+    				<td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ng-click = "accountCtrl.deleteAcc(account.id)"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+        		</tr>
+        	</table>
+        </div>
+        <button class="btn"ng-click="accountCtrl.hideTable()"><span ng-hide = "accountCtrl.isHidden">Hide accounts</span><span ng-show = "accountCtrl.isHidden">Show accounts</span></button>
+	</div>
+</div>

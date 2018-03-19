@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="chartApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My Banking Application</title>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+      </script>
+      <script type="text/javascript">
+         google.charts.load('current', {packages: ['corechart']});     
+      </script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+	    <div class="container-fluid">
+	        <div class="navbar-header">
+	            <a class="navbar-brand" href="#">Sonrai Guru</a>
+	        </div>
+	        <ul class="nav navbar-nav">
+	            <li><a ui-sref="dashboard">Dashboard</a></li>
+	            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Account<span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+          			<li><a href="#" ui-sref="account">Get Accounts</a></li>
+          			<li><a href="#" ui-sref="saveaccount">Add Account</a></li>
+        		</ul>
+        		</li>
+	        </ul>
+	    </div>
+	</nav>
+	
+    <div ui-view></div>
+    
+	<link rel="stylesheet" href="scripts/bootstrap.min.css">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.min.js"></script>
+
+    <script src="scripts/jquery-2.1.4.min.js"></script>
+   <!-- <script src="scripts/angular.min.js"></script> -->
+    <script src="scripts/ui-router.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    
+    <script src="app/app.js"></script>
+    <script src="app/app-state-manager.js"></script>
+    
+    <script src="app/service/dal/dal.js"></script>
+    <script src="app/service/dal/account.js"></script>
+    <script src="app/service/dal/login.js"></script>
+    <script src="app/service/dal/dashboard.js"></script>
+    
+    <script src="app/service/account.js"></script>
+    <script src="app/service/login.js"></script>
+    <script src="app/service/dashboard.js"></script>
+    
+    <script src="app/feature/account/account-controller.js"></script>
+    <script src="app/feature/dashboard/dashboard-controller.js"></script>
+    <script src="app/feature/account/createAccount-controller.js"></script>
+    <script src="app/feature/account/updateAccount-controller.js"></script>
+    <script src="app/feature/login/login-controller.js"></script>
+
+    </div>
+</body>
+</html>
