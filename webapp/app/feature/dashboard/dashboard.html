@@ -2,6 +2,49 @@
 	  <div class="jumbotron">
     <h1 style="color:#FF8C00;"><center>Summary of Account: {{dashboardCtrl.user_name_cookie}}</center></h1>
 </div>
+<button id="myBtn" ng-show="dashboardCtrl.chartType=='line'">Savings</button>
+
+  <!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    Savings Percentage<input ng-model="dashboardCtrl.savingsPercentage" type="number" value="10" step="5" min="0" max="100" ng-change="dashboardCtrl.changeTable()"/>
+    Show savings bar<input type="checkbox" ng-model="dashboardCtrl.showSavings" ng-change="dashboardCtrl.changeTable()"/>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  var modal = document.getElementById('myModal');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+  }
+
+</script>
+
+
 <section class="container content-section text-center">
       <select class="btn btn-primary" ng-model = "dashboardCtrl.timeFrame" ng-change="dashboardCtrl.changeTable()">
       <option value="">Select Time Frame</option>
