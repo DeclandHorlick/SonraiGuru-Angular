@@ -26,9 +26,11 @@
                 	accountNumber: null
                 },
                 templateUrl: "/SonraiGuru-Angular/webapp/app/feature/account/updateAccount.html"
+
         }).state("sonrai", {
             url: "/sonrai",
             templateUrl: "/SonraiGuru-Angular/webapp/app/feature/sonrai/sonrai.html"
+
         })
     });
 }());
