@@ -6,8 +6,7 @@
         
     	var vm = this;
 
-      // vm.timeFrame="2016-03-29";
-      vm.timeFrame;
+      vm.timeFrame="2016-07-09W";
       vm.amountArray = [];
       vm.dateArray = [];
       vm.newDateArray = [];
@@ -25,15 +24,9 @@
 
       function reset()
       {
-	      vm.amountArray = [];
-	      vm.dateArray = [];
 	      vm.newDateArray = [];
-	      vm.formatDateArray = [];
-	      vm.dateArrayTwo = [];
+	     
 	      vm.transDate = [];
-	      vm.finalTransAmnt = [];
-	      vm.balance;
-	      vm.formatTransDate = "";
       }
 
       vm.changeTable = function()
@@ -88,7 +81,7 @@
             });
       }
 
-       // vm.changeTable();
+        vm.changeTable();
 
         function drawLineChart(dateArray, amountArray, balance) {
             // Define the chart to be drawn.
