@@ -13,6 +13,11 @@
       <option value="2016-06-16">Monthly</option>
       <option value="2015-07-10">Yearly</option>
     </select>
+    <select ng-model = "dashboardCtrl.chartType" ng-change="dashboardCtrl.changeTable()">
+      <option value="line">Line Graph</option>
+      <option value="bar">Bar Chart</option>
+      <option value="pie">Pie Chart</option>
+    </select>
 <hr>    
 <div class="container">                                          
   <div class="dropdown">
