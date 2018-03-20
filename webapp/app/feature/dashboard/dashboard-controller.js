@@ -26,9 +26,16 @@
 
       function reset()
       {
-	      vm.newDateArray = [];
-	     
-	      vm.transDate = [];
+	    vm.amountArray = [];
+      vm.dateArray = [];
+      vm.newDateArray = [];
+      vm.formatDateArray = [];
+      vm.dateArrayTwo = [];
+      vm.transDate = [];
+      vm.finalTransAmnt = [];
+      vm.balance;
+      vm.timeDuration;
+      vm.formatTransDate = "";
       }
 
       vm.changeTable = function()
@@ -89,8 +96,7 @@
             // Define the chart to be drawn.
             //vm.bal += balance + amountArray[0] + amountArray[1] + amountArray[2] + amountArray[3] + amountArray[4] + amountArray[5] + amountArray[6]
             
-            vm.newDateArray = [];
-            vm.transDate = [];
+            
 
             var data = new google.visualization.DataTable();
             $log.log(balance);
@@ -106,7 +112,7 @@
 
             }
             $log.log("Total"+ vm.totalTransactions);
-            $log
+            
             vm.startingBalance = vm.balance + vm.totalTransactions;
 
             $log.log("Starting Balance"+ vm.startingBalance);
@@ -195,6 +201,7 @@
             data.addColumn('number', 'Balance');
             if(vm.showSavings==true)
             {
+
               data.addColumn('number', 'Savings Goal');
               for(var z=vm.newDateArray.length-1;z >=0; z--)
               {
@@ -210,19 +217,22 @@
                 $log.log("Amount of days "+ z +"  In loop to build graph"+vm.startingBalance)
               }
             }
+
                
             // Set chart options
             var options = {'title' : 'Account Balance',
                hAxis: {
-                  title: 'Date'
+                  title: 'Date',
+                  	textStyle:{color: '#FFF'}
                },
                vAxis: {
                   title: 'Balance',
-               	minValue: 0
+               	minValue: 0,
+               	textStyle:{color: '#FFF'}
                },   
                'width':1200,
                'height':1000,
-  //             'colors':['#FF8C00'],
+               colors:['#df691a'],
                backgroundColor: { fill:'transparent' },
                pointsVisible: true      
             };
@@ -238,52 +248,11 @@
             google.charts.setOnLoadCallback(type);
          }
 
- /*         function drawPieChart()
-        {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Month');
-            data.addColumn('number', 'Tokyo');
-            data.addColumn('number', 'New York');
-            data.addColumn('number', 'Berlin');
-            data.addColumn('number', 'London');
-            data.addRows([
-               ['Jan',  7.0, -0.2, -0.9, 3.9],
-               ['Feb',  6.9, 0.8, 0.6, 4.2],
-               ['Mar',  9.5,  5.7, 3.5, 5.7],
-               ['Apr',  14.5, 11.3, 8.4, 8.5],
-               ['May',  18.2, 17.0, 13.5, 11.9],
-               ['Jun',  21.5, 22.0, 17.0, 15.2],
-               
-               ['Jul',  25.2, 24.8, 18.6, 17.0],
-               ['Aug',  26.5, 24.1, 17.9, 16.6],
-               ['Sep',  23.3, 20.1, 14.3, 14.2],
-               ['Oct',  18.3, 14.1, 9.0, 10.3],
-               ['Nov',  13.9,  8.6, 3.9, 6.6],
-               ['Dec',  9.6,  2.5,  1.0, 4.8]
-            ]);
-               
-            // Set chart options
-            var options = {'title' : 'Average Temperatures of Cities',
-               hAxis: {
-                  title: 'Month'
-               },
-               vAxis: {
-                  title: 'Temperature'
-               },   
-               'width':1200,
-               'height':1000,
-               backgroundColor: { fill:'transparent' },
-               pointsVisible: true      
-            };
-
-            // Instantiate and draw the chart.
-            var chart = new google.visualization.PieChart(document.getElementById('container'));
-            chart.draw(data, options);
-        }
-*/
+ 
         function drawPieChart(dateArray, amountArray, balance) {
             // Define the chart to be drawn.
-            //vm.bal += balance + amountArray[0] + amountArray[1] + amountArray[2] + amountArray[3] + amountArray[4] + amountArray[5] + amountArray[6]
+            
+           
             var data = new google.visualization.DataTable();
             $log.log(balance);
             vm.bal = balance[0];
@@ -308,7 +277,21 @@
            // $log.log(vm.firstDate);
 
 
-            for(var j = 0; j < 7; j++){
+            if(vm.timeDuration == "W")
+           {
+              vm.amountDays = 7;
+           }
+           else if(vm.timeDuration == "M")
+
+           {
+              vm.amountDays = 31;
+           }
+           else
+           {
+              vm.amountDays = 365;
+           }
+
+            for(var j = 0; j < vm.amountDays; j++){
               var temp = new Date(vm.timeDetails.dateTo);
               temp.setDate(temp.getDate()-j);
               vm.formatDate = String(temp).slice(4, 15);
@@ -370,15 +353,11 @@
 
             data.addColumn('string', 'Day');
             data.addColumn('number', 'Balance');
-            data.addRows([
-               [vm.newDateArray[6], vm.startingBalance+= vm.finalTransAmnt[6]],
-               [vm.newDateArray[5], vm.startingBalance+= vm.finalTransAmnt[5]],
-               [vm.newDateArray[4], vm.startingBalance+= vm.finalTransAmnt[4]],
-               [vm.newDateArray[3], vm.startingBalance+= vm.finalTransAmnt[3]],
-               [vm.newDateArray[2], vm.startingBalance+= vm.finalTransAmnt[2]],
-               [vm.newDateArray[1], vm.startingBalance+= vm.finalTransAmnt[1]],
-               [vm.newDateArray[0], vm.startingBalance+= vm.finalTransAmnt[0]]
-            ]);
+            for(var z=vm.newDateArray.length-1;z >=0; z--)
+            {
+              data.addRow([vm.newDateArray[z], vm.startingBalance+= vm.finalTransAmnt[z]]);
+
+            }
             
                
             // Set chart options
@@ -405,6 +384,7 @@
 	function drawBarChart(dateArray, amountArray, balance) {
             // Define the chart to be drawn.
             //vm.bal += balance + amountArray[0] + amountArray[1] + amountArray[2] + amountArray[3] + amountArray[4] + amountArray[5] + amountArray[6]
+            
             var data = new google.visualization.DataTable();
             $log.log(balance);
             vm.bal = balance[0];
@@ -429,7 +409,21 @@
            // $log.log(vm.firstDate);
 
 
-            for(var j = 0; j < 7; j++){
+            if(vm.timeDuration == "W")
+           {
+              vm.amountDays = 7;
+           }
+           else if(vm.timeDuration == "M")
+
+           {
+              vm.amountDays = 31;
+           }
+           else
+           {
+              vm.amountDays = 365;
+           }
+
+            for(var j = 0; j < vm.amountDays; j++){
               var temp = new Date(vm.timeDetails.dateTo);
               temp.setDate(temp.getDate()-j);
               vm.formatDate = String(temp).slice(4, 15);
@@ -491,31 +485,30 @@
 
             data.addColumn('string', 'Month');
             data.addColumn('number', 'Balance');
-            data.addRows([
-               [vm.newDateArray[6], vm.startingBalance+= vm.finalTransAmnt[6]],
-               [vm.newDateArray[5], vm.startingBalance+= vm.finalTransAmnt[5]],
-               [vm.newDateArray[4], vm.startingBalance+= vm.finalTransAmnt[4]],
-               [vm.newDateArray[3], vm.startingBalance+= vm.finalTransAmnt[3]],
-               [vm.newDateArray[2], vm.startingBalance+= vm.finalTransAmnt[2]],
-               [vm.newDateArray[1], vm.startingBalance+= vm.finalTransAmnt[1]],
-               [vm.newDateArray[0], vm.startingBalance+= vm.finalTransAmnt[0]]
-            ]);
+            for(var z=vm.newDateArray.length-1;z >=0; z--)
+            {
+              data.addRow([vm.newDateArray[z], vm.startingBalance+= vm.finalTransAmnt[z]]);
+            }
             
                
             // Set chart options
             var options = {'title' : 'Account Balance',
                hAxis: {
-                  title: 'Date'
+                  title: 'Date',
+                  	textStyle:{color: '#FFF'}
                },
                vAxis: {
                	minValue: 0,
-                  title: 'Balance'
+                  title: 'Balance',
+
+               	textStyle:{color: '#FFF'}
 
             
                },   
                'width':1200,
                'height':1000,
- //              'colors':['#FF8C00'],
+
+               colors:['#df691a'],
                backgroundColor: { fill:'transparent' },
                pointsVisible: true,
                bars: 'vertical'      
