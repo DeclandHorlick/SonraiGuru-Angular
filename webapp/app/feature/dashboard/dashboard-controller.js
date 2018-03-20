@@ -208,15 +208,17 @@
             // Set chart options
             var options = {'title' : 'Account Balance',
                hAxis: {
-                  title: 'Date'
+                  title: 'Date',
+                  	textStyle:{color: '#FFF'}
                },
                vAxis: {
                   title: 'Balance',
-               	minValue: 0
+               	minValue: 0,
+               	textStyle:{color: '#FFF'}
                },   
                'width':1200,
                'height':1000,
-  //             'colors':['#FF8C00'],
+               colors:['#df691a'],
                backgroundColor: { fill:'transparent' },
                pointsVisible: true      
             };
@@ -499,17 +501,21 @@
             // Set chart options
             var options = {'title' : 'Account Balance',
                hAxis: {
-                  title: 'Date'
+                  title: 'Date',
+                  	textStyle:{color: '#FFF'}
                },
                vAxis: {
                	minValue: 0,
-                  title: 'Balance'
+                  title: 'Balance',
+
+               	textStyle:{color: '#FFF'}
 
             
                },   
                'width':1200,
                'height':1000,
- //              'colors':['#FF8C00'],
+
+               colors:['#df691a'],
                backgroundColor: { fill:'transparent' },
                pointsVisible: true,
                bars: 'vertical'      
