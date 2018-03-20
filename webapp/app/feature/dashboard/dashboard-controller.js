@@ -7,6 +7,8 @@
     	var vm = this;
 
       vm.timeFrame="2016-07-09W";
+      vm.chartType="line";
+      vm.showSavings=false;
       vm.amountArray = [];
       vm.dateArray = [];
       vm.newDateArray = [];
@@ -189,14 +191,25 @@
 
 
             data.addColumn('string', 'Date');
-
+            vm.savingsLine = vm.balance + (vm.balance*(vm.savingsPercentage/100));
             data.addColumn('number', 'Balance');
-            for(var z=vm.newDateArray.length-1;z >=0; z--)
+            if(vm.showSavings==true)
             {
-            data.addRow([vm.newDateArray[z], vm.startingBalance+= vm.finalTransAmnt[z]]);
-            $log.log("Amount of days "+ z +"  In loop to build graph"+vm.startingBalance)
-          }
-            
+              data.addColumn('number', 'Savings Goal');
+              for(var z=vm.newDateArray.length-1;z >=0; z--)
+              {
+                data.addRow([vm.newDateArray[z], vm.startingBalance+= vm.finalTransAmnt[z],vm.savingsLine]);
+                $log.log("Amount of days "+ z +"  In loop to build graph"+vm.startingBalance)
+              }
+            }
+            else
+            {
+              for(var z=vm.newDateArray.length-1;z >=0; z--)
+              {
+                data.addRow([vm.newDateArray[z], vm.startingBalance+= vm.finalTransAmnt[z]]);
+                $log.log("Amount of days "+ z +"  In loop to build graph"+vm.startingBalance)
+              }
+            }
                
             // Set chart options
             var options = {'title' : 'Account Balance',
