@@ -16,6 +16,7 @@
       vm.transDate = [];
       vm.finalTransAmnt = [];
       vm.balance;
+      vm.timeDuration;
       vm.formatTransDate = "";
 
       vm.user_name_cookie = $cookies.get('Username');
@@ -26,11 +27,13 @@
       {
           vm.timeDetails = {
                dateTo : "2016-07-15", 
-               dateFrom : vm.timeFrame
+               dateFrom : vm.timeFrame.slice(0, vm.timeFrame.length-1)
          };
             
             $log.log(vm.timeDetails);
-            $log.log("OUR DATE: "+vm.timeDetails.dateTo);
+            $log.log("OUR DATE: "+vm.timeDetails.dateFrom);
+            vm.timeDuration = vm.timeFrame.slice(vm.timeFrame.length-1, vm.timeFrame.length);
+            $log.log("TYPE DATE: "+vm.timeDuration);
 
             dashboardService.getTransactions(vm.timeDetails).then(function (results) {
             
@@ -61,6 +64,10 @@
         function drawLineChart(dateArray, amountArray, balance) {
             // Define the chart to be drawn.
             //vm.bal += balance + amountArray[0] + amountArray[1] + amountArray[2] + amountArray[3] + amountArray[4] + amountArray[5] + amountArray[6]
+            
+            vm.newDateArray = [];
+            vm.transDate = [];
+
             var data = new google.visualization.DataTable();
             $log.log(balance);
             vm.bal = balance[0];
@@ -84,8 +91,21 @@
 
            // $log.log(vm.firstDate);
 
+           if(vm.timeDuration == "W")
+           {
+              vm.amountDays = 7;
+           }
+           else if(vm.timeDuration == "M")
 
-            for(var j = 0; j < 7; j++){
+           {
+              vm.amountDays = 31;
+           }
+           else
+           {
+              vm.amountDays = 365;
+           }
+
+            for(var j = 0; j < vm.amountDays; j++){
               var temp = new Date(vm.timeDetails.dateTo);
               temp.setDate(temp.getDate()-j);
               vm.formatDate = String(temp).slice(4, 15);
@@ -145,17 +165,13 @@
 
             $log.log(amountArray);
 
-            data.addColumn('string', 'Month');
+            data.addColumn('string', 'Date');
             data.addColumn('number', 'Balance');
-            data.addRows([
-               [vm.newDateArray[6], vm.startingBalance+= vm.finalTransAmnt[6]],
-               [vm.newDateArray[5], vm.startingBalance+= vm.finalTransAmnt[5]],
-               [vm.newDateArray[4], vm.startingBalance+= vm.finalTransAmnt[4]],
-               [vm.newDateArray[3], vm.startingBalance+= vm.finalTransAmnt[3]],
-               [vm.newDateArray[2], vm.startingBalance+= vm.finalTransAmnt[2]],
-               [vm.newDateArray[1], vm.startingBalance+= vm.finalTransAmnt[1]],
-               [vm.newDateArray[0], vm.startingBalance+= vm.finalTransAmnt[0]]
-            ]);
+            for(var z=vm.newDateArray.length-1;z >=0; z--)
+            {
+            data.addRow([vm.newDateArray[z], vm.startingBalance+= vm.finalTransAmnt[z]]);
+            $log.log("Amount of days "+ z +"  In loop to build graph"+vm.startingBalance)
+          }
             
                
             // Set chart options
