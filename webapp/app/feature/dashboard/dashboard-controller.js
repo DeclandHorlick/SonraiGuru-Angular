@@ -232,7 +232,7 @@
                },   
                'width':1200,
                'height':1000,
-               colors:['#df691a'],
+               colors:['#df691a', '#1ae000'],
                backgroundColor: { fill:'transparent' },
                pointsVisible: true      
             };
