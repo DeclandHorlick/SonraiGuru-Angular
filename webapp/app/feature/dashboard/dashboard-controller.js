@@ -24,9 +24,16 @@
 
       function reset()
       {
-	      vm.newDateArray = [];
-	     
-	      vm.transDate = [];
+	    vm.amountArray = [];
+      vm.dateArray = [];
+      vm.newDateArray = [];
+      vm.formatDateArray = [];
+      vm.dateArrayTwo = [];
+      vm.transDate = [];
+      vm.finalTransAmnt = [];
+      vm.balance;
+      vm.timeDuration;
+      vm.formatTransDate = "";
       }
 
       vm.changeTable = function()
@@ -87,8 +94,7 @@
             // Define the chart to be drawn.
             //vm.bal += balance + amountArray[0] + amountArray[1] + amountArray[2] + amountArray[3] + amountArray[4] + amountArray[5] + amountArray[6]
             
-            vm.newDateArray = [];
-            vm.transDate = [];
+            
 
             var data = new google.visualization.DataTable();
             $log.log(balance);
@@ -270,6 +276,7 @@
 */
         function drawPieChart(dateArray, amountArray, balance) {
             // Define the chart to be drawn.
+            
             //vm.bal += balance + amountArray[0] + amountArray[1] + amountArray[2] + amountArray[3] + amountArray[4] + amountArray[5] + amountArray[6]
             var data = new google.visualization.DataTable();
             $log.log(balance);
@@ -392,6 +399,7 @@
 	function drawBarChart(dateArray, amountArray, balance) {
             // Define the chart to be drawn.
             //vm.bal += balance + amountArray[0] + amountArray[1] + amountArray[2] + amountArray[3] + amountArray[4] + amountArray[5] + amountArray[6]
+            
             var data = new google.visualization.DataTable();
             $log.log(balance);
             vm.bal = balance[0];
