@@ -3,7 +3,7 @@
 (function () {
 
     angular.module('chartApp').config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/dashboard");
+        $urlRouterProvider.otherwise("/sonrai");
 
         $stateProvider.state("dashboard", {
             url: "/dashboard",
@@ -26,6 +26,11 @@
                 	accountNumber: null
                 },
                 templateUrl: "/SonraiGuru-Angular/webapp/app/feature/account/updateAccount.html"
+
+        }).state("sonrai", {
+            url: "/sonrai",
+            templateUrl: "/SonraiGuru-Angular/webapp/app/feature/sonrai/sonrai.html"
+
         })
     });
 }());
