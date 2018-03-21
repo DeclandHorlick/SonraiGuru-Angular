@@ -2,9 +2,16 @@
 
 (function() {
 
-    var DashboardController =  function(dashboardService, $log, $cookies) {
+    var DashboardController =  function(dashboardService, $log, $cookies, $state) {
         
     	var vm = this;
+
+    	vm.logout = function(){
+    		$cookies.remove('Username');
+            $log.log($cookies.get('Username'));
+
+            $state.go("sonrai");
+    	}
 
       vm.timeFrame="2016-07-09W";
       vm.chartType="line";
@@ -522,5 +529,5 @@
             
     };
 
-    angular.module('chartApp').controller('dashboardController', ['dashboardService','$log', '$cookies', DashboardController]);
+    angular.module('chartApp').controller('dashboardController', ['dashboardService','$log', '$cookies', '$state', DashboardController]);
 }());
