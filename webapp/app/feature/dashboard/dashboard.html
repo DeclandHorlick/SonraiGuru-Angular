@@ -17,7 +17,7 @@
       <option value="pie">Pie Chart</option>
     </select>
 <!--button class="btn btn-primary" id="myBtn" ng-show="dashboardCtrl.chartType=='line'">Savings</button-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SavingsModal" ng-show="dashboardCtrl.chartType=='line'">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#SavingsModal" ng-hide="dashboardCtrl.chartType=='pie'">
   Savings
 </button>
     <div id = "container" style = "width: 100%; height: 1000px;">
@@ -38,11 +38,11 @@
         </button>
       </div>
       <div class="modal-body">
-        Savings Percentage:  <input ng-model="dashboardCtrl.savingsPercentage" type="number" value="10" step="5" min="0" max="100" ng-change="dashboardCtrl.changeTable()"/>
+        Savings Percentage:  <input ng-model="dashboardCtrl.savingsPercentage" type="number" value="10" step="5" min="0" max="100" />
          Show savings line <input type="checkbox" ng-model="dashboardCtrl.showSavings" ng-change="dashboardCtrl.changeTable()"/>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Set Savings Goal</button>
+        <button type="button" ng-click = "dashboardCtrl.changeTable()" class="btn btn-primary" data-dismiss="modal">Set Savings Goal</button>
         
       </div>
     </div>
