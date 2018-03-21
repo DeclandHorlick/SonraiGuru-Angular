@@ -193,6 +193,7 @@
                },   
                'width':1200,
                'height':1000,
+               pieSliceText : 'value',
                backgroundColor: { fill:'transparent' },
                pointsVisible: true      
             };
